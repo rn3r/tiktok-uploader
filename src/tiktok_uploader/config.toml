@@ -58,3 +58,4 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 
 	post = "//button[.='Post']"
 	post_confirmation = "//div[.='Your videos are being uploaded to TikTok!']"
+ 	popup_close = "//button[@tabindex='0' and contains(@class, 'css-1ypeuck')]"
