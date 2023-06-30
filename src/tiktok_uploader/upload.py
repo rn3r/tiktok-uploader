@@ -144,9 +144,27 @@ def complete_upload_form(driver, path: str, description: str, headless=False, *a
     """
     _go_to_upload(driver)
     _set_video(driver, path=path, **kwargs)
+    _close_popup(driver)
     _set_interactivity(driver, **kwargs)
     _set_description(driver, description)
     _post_video(driver)
+
+def _close_popup(driver) -> None:
+    """
+    Closes the popup that appears when you first upload a video
+    """
+    logger.debug('Closing popup')
+    try:
+        # button class: css-72rvq0
+        # button text: Not now
+        button_selector = EC.presence_of_element_located(
+            (By.XPATH, config['selectors']['upload']['popup_close'])
+            )
+        button = WebDriverWait(driver, config['explicit_wait']).until(button_selector)
+        button.click()
+
+    except Exception as exception:
+        logger.debug('No popup to close')
 
 
 def _go_to_upload(driver) -> None:
